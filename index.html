@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Ricard Santiago Raigada García" />
+  <title>QCut: Hybrid Execution Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/label-panel.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="cv"></canvas>
+
+    <div id="hud">
+      <div id="topbar">
+        <div>
+          <div id="jinfo">QCut Pipeline: Hybrid Execution Map</div>
+          <div id="jsub"></div>
+        </div>
+        <div id="stats">
+          <div><span class="sv c-hpc"  id="s-hpc">0</span><span class="sl">HPC active</span></div>
+          <div><span class="sv c-qc"   id="s-qc">0</span><span class="sl">QC executing</span></div>
+          <div><span class="sv c-done" id="s-done">0</span><span class="sl">done</span></div>
+          <div><span class="sv c-fail" id="s-fail">0</span><span class="sl">fail</span></div>
+        </div>
+      </div>
+      <div id="flash"></div>
+      <div id="logpanel">
+        <div class="ll" id="ll0">&nbsp;</div>
+        <div class="ll" id="ll1">&nbsp;</div>
+        <div class="ll" id="ll2">&nbsp;</div>
+        <div class="ll" id="ll3">&nbsp;</div>
+      </div>
+
+      <div id="legend">
+        <div class="lg"><div class="lc" style="background:#a6c8ff;border:1px solid #0f62fe"></div>in g_hpc_q (waiting free worker)</div>
+        <div class="lg"><div class="lc" style="background:#0f62fe"></div>executing HPC</div>
+        <div class="lg"><div class="lc" style="background:#9ef0f0;border:1px solid #009d9a"></div>in QC session queue</div>
+        <div class="lg"><div class="lc" style="background:#009d9a"></div>executing QC</div>
+        <div class="lg"><div class="lc" style="background:#198038"></div>done - returning</div>
+        <div class="lg"><div class="lc" style="background:#d97706"></div>transient fail - requeue</div>
+        <div class="lg"><div class="lc" style="background:#da1e28"></div>permanent fail</div>
+      </div>
+
+      <div id="hint">scroll to zoom - drag to pan</div>
+      <div id="ctrlbar">
+        <button id="pbtn">&#9654;</button>
+        <input type="range" id="scrub" min="0" max="1000" value="0" step="1" />
+        <span id="tdsp">T = 0.000 s</span>
+        <select id="spd">
+          <option value="0.25">0.25x</option>
+          <option value="0.5">0.5x</option>
+          <option value="1" selected>1x</option>
+          <option value="2">2x</option>
+          <option value="4">4x</option>
+          <option value="8">8x</option>
+          <option value="16">16x</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

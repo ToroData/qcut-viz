@@ -1,0 +1,120 @@
+/* 
+  Author: Ricard Santiago Raigada García
+  Date: 18/05/26
+*/
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* IBM theme */
+:root {
+  --bg:        #e8e6e1;
+  --bg-grad:   rgba(232,230,225,0.96);
+  --ink:       #161616;
+  --ink-2:     #393939;
+  --ink-3:     #6f6f6f;
+  --ink-4:     #a8a8a8;
+  --line:      rgba(22,22,22,0.10);
+  --hpc:       #0f62fe;
+  --qc:        #009d9a;
+  --done:      #198038;
+  --warn:      #d97706;
+  --fail:      #da1e28;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+  font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  color: var(--ink);
+}
+
+#app { width: 100vw; height: 100vh; position: relative; }
+#cv { display: block; width: 100%; height: 100%; cursor: grab; background: var(--bg); }
+#cv:active { cursor: grabbing; }
+#hud {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+#topbar {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 16px 24px 20px;
+  background: linear-gradient(var(--bg-grad), rgba(232,230,225,0));
+}
+#jinfo { font-size: 11px; color: var(--ink); letter-spacing: .12em; text-transform: uppercase; line-height: 2; font-weight: 600; }
+#jsub  { font-size: 9px;  color: var(--ink-3); letter-spacing: .07em; margin-top: 2px; }
+
+#stats { display: flex; gap: 22px; }
+.sv { font-size: 18px; font-weight: 600; display: block; line-height: 1.1; color: var(--ink); }
+.sl { font-size: 9px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .09em; display: block; margin-top: 2px; }
+.c-hpc  { color: var(--hpc); }
+.c-qc   { color: var(--qc); }
+.c-done { color: var(--done); }
+.c-fail { color: var(--fail); }
+
+#flash {
+  position: absolute; top: 72px; right: 24px;
+  font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 4px;
+  opacity: 0; transition: opacity .15s;
+}
+#flash.vis    { opacity: 1; }
+#flash.pfail  { color: #fff; border: 1px solid var(--fail); background: var(--fail); }
+#flash.tfail  { color: #fff; border: 1px solid var(--warn); background: var(--warn); }
+#flash.done   { color: #fff; border: 1px solid var(--done); background: var(--done); }
+
+#logpanel {
+  position: absolute; bottom: 58px; right: 20px;
+  width: 310px;
+}
+.ll {
+  font-size: 9.5px; color: var(--ink-4); line-height: 1.95;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color .35s;
+}
+.ll.hot { color: var(--ink); }
+.lt { color: var(--ink-3); }
+.lh { color: var(--hpc); }
+.lq { color: var(--qc); }
+.ld { color: var(--done); }
+.lf { color: var(--fail); }
+.lw { color: var(--warn); }
+
+#legend {
+  position: absolute; bottom: 58px; left: 20px;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.lg { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--ink-2); letter-spacing: .06em; text-transform: uppercase; }
+.lc { width: 22px; height: 5px; border-radius: 2px; flex-shrink: 0; }
+#hint {
+  position: absolute; bottom: 54px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; color: var(--ink-3); letter-spacing: .08em;
+}
+
+#ctrlbar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 10px 20px 14px;
+  background: linear-gradient(rgba(232,230,225,0), var(--bg-grad));
+  display: flex; align-items: center; gap: 12px;
+  pointer-events: all;
+}
+#pbtn {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--hpc); border: 1px solid var(--hpc);
+  color: #fff; cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background .15s, border-color .15s;
+}
+#pbtn:hover { background: #0353e9; border-color: #0353e9; }
+#scrub { flex: 1; accent-color: var(--hpc); }
+#tdsp {
+  font-size: 11px; color: var(--ink); font-weight: 600;
+  min-width: 96px; text-align: right; letter-spacing: .05em;
+}
+#spd {
+  background: #fff; border: 1px solid var(--line);
+  color: var(--ink-2); font-size: 11px;
+  padding: 3px 8px; border-radius: 4px; cursor: pointer;
+  font-family: inherit;
+}

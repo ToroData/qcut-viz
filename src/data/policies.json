@@ -1,0 +1,65 @@
+[
+  {
+    "policy_id": "A",
+    "file": "pol-A.json",
+    "job_id": "407508",
+    "total_duration_s": 45.624,
+    "hpc_cap": 12,
+    "qc_cap": 3,
+    "phi": 2.788,
+    "counts": {
+      "fragments": 72,
+      "hpc": 65,
+      "qc": 7,
+      "initial_hpc": 58,
+      "initial_qc": 7,
+      "initial_undecided": 7,
+      "undecided_to_hpc": 7,
+      "undecided_to_qc": 0,
+      "failed_qc_to_hpc": 0
+    },
+    "scenario_description": "QC-bound reference run. HPC partition finishes its work early; the makespan is dominated by the long queue at the IBM Torino QPU (qc_cap=3, 7 QC fragments)."
+  },
+  {
+    "policy_id": "B",
+    "file": "pol-B.json",
+    "job_id": "407532",
+    "total_duration_s": 61.182,
+    "hpc_cap": 12,
+    "qc_cap": 3,
+    "phi": 2.177,
+    "counts": {
+      "fragments": 72,
+      "hpc": 66,
+      "qc": 6,
+      "initial_hpc": 43,
+      "initial_qc": 14,
+      "initial_undecided": 15,
+      "undecided_to_hpc": 15,
+      "undecided_to_qc": 0,
+      "failed_qc_to_hpc": 4
+    },
+    "scenario_description": "Heavily QC-bound run with QC backend transient instability: 4 QC fragments hit TRANSIENT_FAIL mid-execution and the DQR failover policy re-tags them as HPC, requeueing them into g_hpc_q to finish on a free MPI worker."
+  },
+  {
+    "policy_id": "C",
+    "file": "pol-C.json",
+    "job_id": "407533",
+    "total_duration_s": 41.555,
+    "hpc_cap": 12,
+    "qc_cap": 20,
+    "phi": 1.652,
+    "counts": {
+      "fragments": 72,
+      "hpc": 43,
+      "qc": 29,
+      "initial_hpc": 43,
+      "initial_qc": 14,
+      "initial_undecided": 15,
+      "undecided_to_hpc": 0,
+      "undecided_to_qc": 15,
+      "failed_qc_to_hpc": 0
+    },
+    "scenario_description": "Balanced HPCQC run with a big QC slot budget (qc_cap=20). HPC and QC critical paths land roughly in parity so Phi sits near 1."
+  }
+]
